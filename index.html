@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlowTech Automate — Coming Soon</title>
+<meta name="description" content="FlowTech Automate — done-for-you automation; reliable, repeatable outcomes. A FlowTech AI division. Coming soon.">
+
+<!-- Open Graph (og.png is a binary — upload via GitHub web UI; see deploy notes) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="FlowTech Automate — Automate the Work · Scale the Business">
+<meta property="og:description" content="Done-for-you automation; reliable, repeatable outcomes. A FlowTech AI division.">
+<meta property="og:image" content="/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --obsidian:#0B1114;
+    --ink:#1A2230;
+    --slate:#5B6675;
+    --mist:#E7ECF2;
+    --white:#FFFFFF;
+    --auto-deep:#3A12A8;
+    --auto-mid:#6A2CE0;
+    --auto-bright:#9B5CFF;
+    --auto-grad:linear-gradient(180deg,var(--auto-deep) 0%,var(--auto-mid) 50%,var(--auto-bright) 100%);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  html,body{height:100%}
+
+  body{
+    background:var(--obsidian);
+    color:var(--mist);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    position:relative;
+  }
+
+  /* atmosphere: faint engineering grid + cool core glow */
+  body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(to right,rgba(231,236,242,0.035) 1px,transparent 1px),
+      linear-gradient(to bottom,rgba(231,236,242,0.035) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 80% 70% at 50% 42%,#000 30%,transparent 78%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 42%,#000 30%,transparent 78%);
+    pointer-events:none;
+  }
+  body::after{
+    content:"";
+    position:absolute;
+    width:760px;height:760px;
+    top:32%;left:50%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(106,44,224,0.18) 0%,rgba(106,44,224,0.06) 38%,transparent 68%);
+    filter:blur(8px);
+    pointer-events:none;
+  }
+
+  main{
+    position:relative;
+    z-index:1;
+    width:min(680px,90vw);
+    text-align:center;
+    padding:48px 24px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .mark{
+    width:132px;height:132px;
+    margin-bottom:38px;
+    filter:drop-shadow(0 6px 28px rgba(106,44,224,0.34));
+    opacity:0;
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) .05s forwards;
+  }
+  .mark svg{width:100%;height:100%;display:block}
+
+  .wordmark{
+    font-family:"Michroma",sans-serif;
+    font-size:clamp(26px,6vw,46px);
+    letter-spacing:.03em;
+    color:var(--white);
+    line-height:1.12;
+    opacity:0;
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) .18s forwards;
+  }
+
+  .tagline{
+    font-family:"Michroma",sans-serif;
+    font-size:clamp(10px,2.1vw,13px);
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    margin-top:20px;
+    line-height:1.7;
+    background:var(--auto-grad);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    opacity:0;
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) .3s forwards;
+  }
+
+  .rule{
+    width:0;height:1px;margin:34px 0 26px;
+    background:linear-gradient(90deg,transparent,var(--auto-mid),transparent);
+    animation:grow 1s cubic-bezier(.2,.7,.2,1) .46s forwards;
+  }
+
+  .status{
+    font-size:clamp(11px,2vw,13px);
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--slate);
+    opacity:0;
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) .56s forwards;
+  }
+  .status .dot{
+    display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:var(--auto-mid);margin-right:12px;vertical-align:middle;
+    box-shadow:0 0 0 0 rgba(106,44,224,.55);
+    animation:pulse 2.4s ease-out infinite;
+  }
+
+  .descriptor{
+    max-width:460px;
+    margin-top:22px;
+    font-size:clamp(14px,2.4vw,16px);
+    font-weight:300;
+    line-height:1.6;
+    color:var(--mist);
+    opacity:0;
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) .66s forwards;
+  }
+
+  .cta{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:40px;
+    padding:14px 28px;
+    border:1px solid rgba(106,44,224,.45);
+    border-radius:2px;
+    font-family:"IBM Plex Sans",sans-serif;
+    font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--auto-bright);
+    text-decoration:none;
+    background:rgba(106,44,224,.04);
+    transition:background .35s ease,border-color .35s ease,color .35s ease,transform .35s ease;
+    opacity:0;
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) .78s forwards;
+  }
+  .cta:hover{
+    background:var(--auto-grad);
+    border-color:transparent;
+    color:var(--white);
+    transform:translateY(-2px);
+  }
+  .cta svg{width:15px;height:15px}
+
+  .parent{
+    margin-top:54px;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--slate);
+    opacity:0;
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) .9s forwards;
+  }
+  .parent a{color:var(--mist);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s ease}
+  .parent a:hover{border-color:var(--auto-mid)}
+
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes grow{from{width:0}to{width:180px}}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(106,44,224,.5)}70%{box-shadow:0 0 0 9px rgba(106,44,224,0)}100%{box-shadow:0 0 0 0 rgba(106,44,224,0)}}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important}
+    .mark,.wordmark,.tagline,.status,.descriptor,.cta,.parent{opacity:1}
+    .rule{width:180px}
+  }
+</style>
+</head>
+<body>
+  <main>
+    <div class="mark" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -110 220 220">
+        <defs>
+          <linearGradient id="g-automate" x1="0" y1="100" x2="0" y2="-100" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#3A12A8"/>
+            <stop offset="50%" stop-color="#6A2CE0"/>
+            <stop offset="100%" stop-color="#9B5CFF"/>
+          </linearGradient>
+        </defs>
+        <path d="M -19.072,28.989 L -19.072,52.059 L -18.009,52.620 L -17.099,53.406 L -16.390,54.377 L -15.918,55.482 L -15.707,56.665 L -15.767,57.866 L -16.097,59.022 L -16.678,60.074 L -17.481,60.968 L -18.465,61.659 L -19.579,62.110 L -20.766,62.299 L -21.965,62.215 L -23.115,61.864 L -24.156,61.263 L -25.035,60.443 L -25.706,59.446 L -26.136,58.323 L -26.302,57.133 L -26.196,55.936 L -25.823,54.793 L -25.202,53.764 L -24.365,52.901 L -23.356,52.248 L -23.356,31.633 L -39.165,22.437 L -54.561,31.501 L -54.560,58.500 L -43.342,64.976 L -43.330,43.829 L -44.360,43.212 L -45.224,42.380 L -45.879,41.374 L -46.292,40.247 L -46.440,39.056 L -46.317,37.862 L -45.928,36.727 L -45.295,35.707 L -44.448,34.857 L -43.432,34.218 L -42.298,33.825 L -41.105,33.696 L -39.913,33.839 L -38.784,34.246 L -37.775,34.897 L -36.939,35.757 L -36.317,36.784 L -35.942,37.924 L -35.834,39.119 L -35.996,40.308 L -36.422,41.430 L -37.089,42.428 L -37.963,43.250 L -39.000,43.855 L -39.014,67.475 L -23.816,76.250 L -2.165,63.750 L -2.165,25.660 L -23.305,13.455 L -23.305,-13.455 L -2.165,-25.660 L -2.165,-63.750 L -23.816,-76.250 L -38.970,-67.500 L -38.968,-49.841 L -37.935,-49.229 L -37.066,-48.401 L -36.406,-47.399 L -35.988,-46.274 L -35.833,-45.084 L -35.950,-43.890 L -36.332,-42.752 L -36.961,-41.729 L -37.803,-40.874 L -38.816,-40.230 L -39.948,-39.831 L -41.140,-39.696 L -42.333,-39.833 L -43.464,-40.234 L -44.476,-40.879 L -45.317,-41.736 L -45.944,-42.759 L -46.324,-43.897 L -46.439,-45.092 L -46.283,-46.282 L -45.863,-47.406 L -45.201,-48.407 L -44.331,-49.234 L -43.297,-49.844 L -43.300,-65.001 L -55.141,-58.164 L -55.148,-36.646 L -39.137,-27.404 L -23.142,-36.639 L -23.142,-52.148 L -24.179,-52.754 L -25.053,-53.579 L -25.719,-54.578 L -26.143,-55.702 L -26.303,-56.892 L -26.191,-58.088 L -25.813,-59.228 L -25.188,-60.254 L -24.349,-61.113 L -23.337,-61.761 L -22.206,-62.165 L -21.013,-62.304 L -19.820,-62.171 L -18.686,-61.773 L -17.672,-61.130 L -16.828,-60.275 L -16.198,-59.252 L -15.815,-58.114 L -15.697,-56.919 L -15.851,-55.728 L -16.269,-54.602 L -16.930,-53.599 L -17.800,-52.770 L -18.833,-52.159 L -18.833,-34.132 L -34.641,-25.031 L -34.641,-4.842 L -34.835,4.924 L -34.835,19.888 L -19.072,28.989 Z" fill="url(#g-automate)" fill-rule="nonzero" stroke="none"/>
+        <path d="M -77.942,-7.488 L -55.071,5.737 L -46.721,10.856 L -39.165,15.219 L -39.165,4.751 L -39.060,-4.801 L -38.977,-22.534 L -54.454,-13.623 L -54.552,-12.427 L -54.916,-11.284 L -55.528,-10.252 L -56.356,-9.384 L -57.358,-8.724 L -58.483,-8.306 L -59.672,-8.152 L -60.866,-8.269 L -62.004,-8.651 L -63.026,-9.279 L -63.881,-10.121 L -64.524,-11.133 L -64.924,-12.264 L -65.060,-13.456 L -64.924,-14.648 L -64.524,-15.779 L -63.879,-16.791 L -63.024,-17.633 L -62.002,-18.260 L -60.864,-18.642 L -59.670,-18.759 L -58.481,-18.604 L -57.356,-18.186 L -56.355,-17.525 L -43.282,-25.011 L -54.560,-31.500 L -77.942,-18.008 L -77.942,-7.488 Z" fill="url(#g-automate)" fill-rule="nonzero" stroke="none"/>
+        <path d="M -57.236,9.467 L -77.942,-2.488 L -77.942,18.027 L -58.895,29.003 L -43.301,19.865 L -41.029,18.506 L -48.525,14.075 L -57.236,9.467 Z" fill="url(#g-automate)" fill-rule="nonzero" stroke="none"/>
+        <path d="M 18.961,29.065 L 34.641,20.023 L 34.641,4.842 L 34.641,-4.842 L 34.641,-20.000 L 34.644,-19.998 L 34.644,-24.998 L 18.960,-34.053 L 18.960,-52.158 L 17.927,-52.769 L 17.058,-53.596 L 16.397,-54.598 L 15.978,-55.722 L 15.822,-56.912 L 15.938,-58.107 L 16.320,-59.245 L 16.948,-60.268 L 17.789,-61.123 L 18.802,-61.768 L 19.933,-62.168 L 21.125,-62.304 L 22.318,-62.168 L 23.449,-61.768 L 24.462,-61.123 L 25.303,-60.268 L 25.931,-59.245 L 26.313,-58.107 L 26.429,-56.912 L 26.273,-55.722 L 25.854,-54.598 L 25.193,-53.596 L 24.324,-52.769 L 23.291,-52.158 L 23.291,-36.553 L 39.002,-27.482 L 54.566,-36.504 L 54.561,-58.499 L 42.720,-65.336 L 42.720,-49.843 L 43.753,-49.232 L 44.622,-48.404 L 45.284,-47.403 L 45.703,-46.278 L 45.858,-45.088 L 45.742,-43.893 L 45.361,-42.755 L 44.733,-41.732 L 43.891,-40.876 L 42.879,-40.232 L 41.747,-39.831 L 40.555,-39.696 L 39.362,-39.831 L 38.230,-40.232 L 37.218,-40.876 L 36.376,-41.732 L 35.748,-42.755 L 35.367,-43.893 L 35.251,-45.088 L 35.406,-46.278 L 35.825,-47.403 L 36.487,-48.404 L 37.356,-49.232 L 38.389,-49.843 L 38.389,-67.836 L 23.816,-76.250 L 2.165,-63.750 L 2.165,-25.660 L 23.305,-13.455 L 23.305,13.455 L 2.165,25.660 L 2.165,63.750 L 23.816,76.250 L 38.974,67.498 L 38.990,43.917 L 37.935,43.344 L 37.037,42.549 L 36.340,41.572 L 35.881,40.463 L 35.682,39.280 L 35.755,38.082 L 36.095,36.931 L 36.685,35.887 L 37.495,35.001 L 38.483,34.320 L 39.598,33.879 L 40.785,33.700 L 41.981,33.792 L 43.126,34.150 L 44.161,34.757 L 45.034,35.581 L 45.698,36.580 L 46.122,37.702 L 46.282,38.892 L 46.170,40.086 L 45.793,41.225 L 45.170,42.251 L 44.332,43.109 L 43.323,43.758 L 43.323,64.988 L 54.560,58.500 L 54.560,31.500 L 38.971,22.455 L 23.290,31.615 L 23.290,52.079 L 24.293,52.684 L 25.136,53.499 L 25.774,54.482 L 26.176,55.582 L 26.321,56.745 L 26.202,57.911 L 25.825,59.020 L 25.209,60.017 L 24.385,60.850 L 23.395,61.478 L 22.290,61.867 L 21.125,61.999 L 19.961,61.867 L 18.856,61.478 L 17.866,60.850 L 17.042,60.017 L 16.426,59.020 L 16.049,57.911 L 15.930,56.745 L 16.075,55.582 L 16.477,54.482 L 17.115,53.499 L 17.958,52.684 L 18.961,52.079 L 18.961,29.065 Z" fill="url(#g-automate)" fill-rule="nonzero" stroke="none"/>
+        <path d="M 55.074,5.739 L 77.942,-7.449 L 77.942,-18.009 L 54.567,-31.504 L 43.301,-25.000 L 56.342,-17.570 L 57.343,-18.212 L 58.463,-18.616 L 59.644,-18.760 L 60.828,-18.636 L 61.954,-18.252 L 62.966,-17.627 L 63.814,-16.792 L 64.454,-15.788 L 64.854,-14.668 L 64.994,-13.486 L 64.868,-12.303 L 64.480,-11.177 L 63.852,-10.167 L 63.014,-9.322 L 62.009,-8.685 L 60.887,-8.288 L 59.705,-8.151 L 58.522,-8.281 L 57.398,-8.671 L 56.389,-9.303 L 55.547,-10.143 L 54.913,-11.150 L 54.519,-12.273 L 54.385,-13.455 L 38.971,-22.500 L 38.971,-4.843 L 38.971,4.843 L 38.971,15.354 L 46.725,10.881 L 55.074,5.739 Z" fill="url(#g-automate)" fill-rule="nonzero" stroke="none"/>
+        <path d="M 77.942,-2.449 L 57.238,9.491 L 48.582,14.123 L 40.853,18.610 L 58.892,29.001 L 77.942,18.016 L 77.942,-2.449 Z" fill="url(#g-automate)" fill-rule="nonzero" stroke="none"/>
+        <path d="M 12.372,-9.643 L -0.007,-2.496 L -12.374,-9.636 L 0.000,-16.780 L 12.372,-9.643 Z" fill="none" stroke="url(#g-automate)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 14.538,-5.893 L 14.538,8.409 L 2.165,15.554 L 2.165,1.250 L 14.538,-5.893 Z" fill="none" stroke="url(#g-automate)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M -14.538,8.393 L -14.538,-5.893 L -2.165,1.250 L -2.165,15.554 L -14.538,8.393 Z" fill="none" stroke="url(#g-automate)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M 18.868,-10.893 L 0.000,-21.787 L -18.868,-10.893 L -18.868,10.893 L 0.000,21.787 L 18.868,10.893 L 18.868,-10.893 Z" fill="none" stroke="url(#g-automate)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="0" cy="0" r="86.103" fill="none" stroke="url(#g-automate)" stroke-width="2.0"/>
+        <circle cx="0" cy="0" r="89.000" fill="none" stroke="url(#g-automate)" stroke-width="2.0"/>
+      </svg>
+    </div>
+
+    <h1 class="wordmark">FlowTech&nbsp;Automate</h1>
+    <p class="tagline">Automate&nbsp;the&nbsp;Work&nbsp;·&nbsp;Scale&nbsp;the&nbsp;Business</p>
+
+    <div class="rule" aria-hidden="true"></div>
+
+    <p class="status"><span class="dot" aria-hidden="true"></span>Coming Soon</p>
+
+    <p class="descriptor">Done-for-you automation — reliable, repeatable outcomes, built and run for your business.</p>
+
+    <a class="cta" href="mailto:admin@flowtechai.com.au?subject=FlowTech%20Automate%20%E2%80%94%20Register%20interest">
+      Register interest
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <p class="parent">A division of <a href="https://flowtechai.com.au">FlowTech&nbsp;AI</a></p>
+  </main>
+</body>
+</html>
